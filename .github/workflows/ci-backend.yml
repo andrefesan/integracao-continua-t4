@@ -1,0 +1,22 @@
+name: CI Back-end
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'sgcmapi/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      #- run: echo "Primeiro Passo"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribuition: 'temurin'
+      - name: Maven Compile/Test
+        working-directory: sgcmapi/
+        run: mvn compile test
